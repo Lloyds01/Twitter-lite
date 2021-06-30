@@ -1,0 +1,40 @@
+from tweets.serializers import TweetSerializer
+from rest_framework.serializers import Serializer
+from django.shortcuts import render, HttpResponse
+from rest_framework import viewsets,permissions
+from .models import Retweet, Trends, Tweet, Like
+from .serializers import LikeSerializer,Retweetserializer, Trendsserializer
+
+
+# Create your views here.
+def index(request):
+    return HttpResponse("Hello Liberty")
+
+class TweetViewSet(viewsets.ModelViewSet):
+    '''
+    Api endpoint taha allows user to be viewed or edited
+    '''
+    queryset=Tweet.objects.all()
+    serializer_class = TweetSerializer
+
+class LikeViewSet(viewsets.ModelViewSet):
+    '''
+    API that allows viewers to like 
+    '''
+    queryset=Like.objects.all()
+    serializer_class = LikeSerializer
+    # permission_classes= [permissions.IsAuthenticated]
+
+class RetweetviewSet(viewsets.ModelViewSet):
+    '''
+    API for to save all retweets in the database 
+    '''
+    queryset=Retweet.objects.all()
+    serializer_class = Retweetserializer
+
+class TrendsviewSet(viewsets.ModelViewSet):
+    '''
+    API for all trends available in the app 
+    '''
+    queryset=Trends.objects.all()
+    serializer_class=Trendsserializer
