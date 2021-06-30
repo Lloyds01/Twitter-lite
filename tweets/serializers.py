@@ -1,24 +1,34 @@
 from django.db.models import fields
-from rest_framework.fields import Field
-from rest_framework.serializers import ModelSerializer
-from .models import Retweet, Trends, Tweet, Like
+from rest_framework.fields import CharField
+from rest_framework.serializers import ModelSerializer, IntegerField
+from .models import Comment, Retweet, Trends, Tweet, Like
 
 class TweetSerializer(ModelSerializer):
+    likes = IntegerField(source="get_num_like",read_only = True)
+    retweet = IntegerField(source="get_num_retweet",read_only =True)
+    comment = IntegerField(source="get_num_comment",read_only=True)
+    username = CharField(source="user.username",read_only=True)
     class Meta:
         model = Tweet
-        fields ="__all__"
+        fields =["text", "likes","retweet","created_on","comment","username"]
 
 class LikeSerializer(ModelSerializer):
-    class Metta:
+    class Meta:
         model = Like
-        fields = "__all__"
+        fields = ["tweet", "user"]
 
 class Retweetserializer(ModelSerializer):
-    class Metta:
+    class Meta:
         model = Retweet
-        fields = "__all__"
+        fields = ["tweet", "user"]
+        # depth = 1
 
 class Trendsserializer(ModelSerializer):
-    class Metta:
+    class Meta:
         model = Trends
-        fields = "__all__"
+        fields = ["tweet", "user"]
+
+class Commentserializer(ModelSerializer):
+    class Meta:
+        model = Comment
+        fields = ["tweet","user"]
