@@ -10,7 +10,7 @@ class TweetSerializer(ModelSerializer):
     username = CharField(source="user.username",read_only=True)
     class Meta:
         model = Tweet
-        fields =["text", "likes","retweet","created_on","comment","username"]
+        fields =["text", "likes","retweet","created_on","comment","username", "user"]
 
 class LikeSerializer(ModelSerializer):
     class Meta:

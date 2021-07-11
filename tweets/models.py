@@ -21,7 +21,7 @@ class Tweet(models.Model):
 class Like(models.Model):
     user=models.ForeignKey(User,on_delete=models.CASCADE)
     tweet=models.ForeignKey(Tweet,on_delete=models.CASCADE)
-    created_on=models.DateTimeField(auto_created=True)
+    created_on=models.DateTimeField(auto_now_add=True)
 
     class Meta:
         #this makes sure that the user and twee pair dont occure more thand once
