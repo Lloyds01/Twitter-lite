@@ -20,7 +20,7 @@ class LikeSerializer(ModelSerializer):
 class Retweetserializer(ModelSerializer):
     class Meta:
         model = Retweet
-        fields = ["tweet", "user"]
+        fields = ["tweet", "user",]
         # depth = 1
 
 class Trendsserializer(ModelSerializer):
