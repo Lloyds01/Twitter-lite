@@ -1,1 +1,1 @@
-web: gunicorn myproject twitter_lite.wsgi
+web: gunicorn twitter_lite.wsgi
